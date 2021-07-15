@@ -1,0 +1,83 @@
+package java_study1;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+// 숫자판 점프
+
+public class problem1 {
+
+	public static void main(String[] args) {
+		int i, j;
+		
+		Scanner scan = new Scanner(System.in);
+		
+		int[][]G = new int[5][5];
+		
+		for(i = 0; i < 5; i++) {
+			for(j = 0; j < 5; j++) {
+				G[j][i] = scan.nextInt();
+			}
+		}
+		
+		ArrayList<String> list = new ArrayList<String>();
+		
+		for(i = 0; i < 5; i++) {
+			for(j = 0; j < 5; j++) {
+				int[] storage = new int[6];
+				String str = "";
+				int index = 0;
+				DFS(G, i, j, index, storage);
+				for(int k = 0; k < 6; k++) {
+					str+=(char)(storage[k] + 48);
+				}
+				System.out.println(str);
+				list.add(str);
+				System.out.println();
+			}
+		}
+	}
+	
+	public static void DFS(int[][] arr, int x, int y, int index, int[] storage){
+		if(index==5) return;
+		index++;
+		storage[index]=arr[x][y];
+		
+		if(x == 0 && y == 0) {
+			DFS(arr, x+1, y, index, storage);
+			DFS(arr, x, y+1, index, storage);
+		}else if(x == 0 && y == 4){
+			DFS(arr, x+1, y, index, storage);
+			DFS(arr, x, y - 1, index, storage);
+		}else if(x == 0) {
+			DFS(arr, x+1, y, index, storage);
+			DFS(arr, x, y - 1, index, storage);
+			DFS(arr, x, y+1, index, storage);
+		}else if(x > 0 && x < 4 && y == 0) {
+			DFS(arr, x+1, y, index, storage);
+			DFS(arr, x, y+1, index, storage);
+			DFS(arr, x - 1, y, index, storage);
+		}else if(x > 0 && x < 4 && y == 4) {
+			DFS(arr, x-1, y, index, storage);
+			DFS(arr, x+1, y, index, storage);
+			DFS(arr, x, y-1, index, storage);
+		}else if(x > 0 && x < 4) {
+			DFS(arr, x-1, y, index, storage);
+			DFS(arr, x+1, y, index, storage);
+			DFS(arr, x, y+1, index, storage);
+			DFS(arr, x, y-1, index, storage);
+		}else if(x == 4 && y == 0) {
+			DFS(arr, x - 1, y, index, storage);
+			DFS(arr, x, y + 1, index, storage);
+		}else if(x == 4 && y == 4) {
+			DFS(arr, x - 1, y, index, storage);
+			DFS(arr, x, y - 1, index, storage);
+		}else if(x == 4 && y > 0 && y < 4) {
+			DFS(arr, x-1, y, index, storage);
+			DFS(arr, x, y-1, index, storage);
+			DFS(arr, x, y+1, index, storage);
+		}
+		return;
+	}
+
+}
