@@ -1,0 +1,60 @@
+package java_study1;
+
+// 상근이의 여행
+
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class problem2 {
+
+public static void main(String[] args) {
+		
+		Scanner scan = new Scanner(System.in);
+		int N = scan.nextInt();
+		int M = scan.nextInt();
+		boolean visited[] = new boolean[N + 1];
+		int v = 0;
+		
+		LinkedList<Integer>[] list = new LinkedList[N + 1];
+		for(int i = 0; i <= N; i++) {
+			list[i] = new LinkedList<Integer>();
+		}		
+		
+		for(int i = 0; i < M; i++) {
+			int a = scan.nextInt();
+			int b = scan.nextInt();
+			list[a].add(b);
+			list[b].add(a);
+			v = a;
+		}
+		
+		for(int i = 1; i <= N; i++) {
+			Collections.sort(list[i]);
+		}
+		
+		dfs_list(v, list, visited);
+		
+		// 방문 횟수는 ??
+		
+		scan.close();
+		
+	}
+	
+	public static void dfs_list(int v, LinkedList<Integer>[] adjList, boolean[] visited) {
+		visited[v] = true;
+		
+		System.out.println(v + " ");
+		
+		Iterator<Integer> iter = adjList[v].listIterator();
+		while(iter.hasNext()) {
+			int w = iter.next();
+			if(!visited[w])
+				dfs_list(w, adjList, visited);
+		}
+		
+	}
+	
+	
+}
