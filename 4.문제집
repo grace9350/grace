@@ -1,0 +1,49 @@
+package java_study1;
+
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class problem4 {
+
+	public static void main(String[] args) {
+		
+		Scanner scan = new Scanner(System.in);
+		int N = scan.nextInt();
+		int M = scan.nextInt();
+		
+		LinkedList<Integer>[] list = new LinkedList[N + 1];
+		for(int i = 0; i <= N; i++) {
+			list[i] = new LinkedList<Integer>();
+		}
+		
+		int[] arr = new int[N + 1];
+		
+		for(int i = 0; i < M; i++) {
+			int A = scan.nextInt();
+			int B = scan.nextInt();
+			list[A].add(B);
+			arr[A] = 1;
+		}
+		
+		boolean[] visited = new boolean[N + 1];		
+		for(int i = 1; i <= N; i++) {
+			if(arr[i] == 1)
+				print(list, i, visited);
+		}
+		
+		scan.close();
+	}
+	
+	public static void print(LinkedList[] list, int index, boolean[] visited) {
+		if(visited[index]) return;
+		if(list[index].size() > 0) {
+			System.out.println("h");
+			int num = (int) list[index].get(0);
+			System.out.println(num);
+			print(list, num, visited);
+		}
+		System.out.println((int)list[index].get(0));
+		visited[(int)list[index].get(0)] = true;
+	}
+	
+}
