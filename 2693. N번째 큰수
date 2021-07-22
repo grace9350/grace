@@ -1,0 +1,27 @@
+// N번째 큰수
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.StringTokenizer;
+
+public class N번째큰수 {
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int T = Integer.parseInt(br.readLine());
+		for(int i = 0; i < T; i++) {
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			StringTokenizer st = null;
+			st = new StringTokenizer(br.readLine());
+			for(int j = 1; j <= 10; j++) {
+				int num = Integer.parseInt(st.nextToken());
+				list.add(num);
+			}
+			Collections.sort(list);
+			System.out.println(list.get(7));
+		}		
+	}
+
+}
