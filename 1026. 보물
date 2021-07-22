@@ -1,0 +1,41 @@
+// 1026 보물
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		
+		ArrayList<Integer> A = new ArrayList<Integer>();
+		ArrayList<Integer> B = new ArrayList<Integer>();
+		
+		StringTokenizer st1 = null, st2 = null;
+		st1 = new StringTokenizer(br.readLine());
+		st2 = new StringTokenizer(br.readLine());
+		for(int i = 1; i <= N; i++) {
+			int num = Integer.parseInt(st1.nextToken());
+			A.add(num);
+		}
+		for(int i = 1; i <= N; i++) {
+			int num = Integer.parseInt(st2.nextToken());
+			B.add(num);
+		}
+		Collections.sort(A);
+		Collections.sort(B);
+		
+		int sum = 0;
+		for(int i = 0; i < N; i++) {
+			int x = A.get(i);
+			int y = B.get(N - i - 1);
+			sum += x * y;
+		}
+		System.out.println(sum);
+	}
+
+}
