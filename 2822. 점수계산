@@ -1,0 +1,47 @@
+// 점수계산
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class 점수계산 {
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int[] score = new int[8];
+		int[] index = new int[8];
+		
+		for(int i = 0; i < 8; i++) {
+			score[i] = Integer.parseInt(br.readLine());
+			index[i] = i + 1;
+		}
+		
+		for(int i = 1; i < 8; i++) {
+			for(int j = 0; j < i; j++) {
+				if(score[i] > score[j]) {
+					int temp = score[i];
+					score[i] = score[j];
+					score[j] = temp;
+					int tmp = index[i];
+					index[i] = index[j];
+					index[j] = tmp;
+				}
+			}
+		}
+		
+		int sum = score[0] + score[1] + score[2] + score[3] + score[4];
+		
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		for(int i = 0; i < 5; i++) {
+			list.add(index[i]);
+		}
+		Collections.sort(list);
+		
+		System.out.println(sum);
+		for(int i : list) {
+			System.out.print(i + " ");
+		}
+	}
+	
+}
