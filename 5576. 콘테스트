@@ -1,0 +1,35 @@
+// 5576 콘테스트
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		ArrayList<Integer> w = new ArrayList<Integer>();
+		for(int i = 0; i < 10; i++) {
+			int score = Integer.parseInt(br.readLine());
+			w.add(score);
+		}
+		
+		ArrayList<Integer> k = new ArrayList<Integer>();
+		for(int i = 0; i < 10; i++) {
+			int score = Integer.parseInt(br.readLine());
+			k.add(score);
+		}
+		
+		// sort() 함수 : 오름차순 정렬
+		Collections.sort(w);
+		Collections.sort(k);
+		
+		int sumW = w.get(7) + w.get(8) + w.get(9);
+		int sumK = k.get(7) + k.get(8) + k.get(9);
+		System.out.println(sumW + " " + sumK);
+		
+	}
+
+}
